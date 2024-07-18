@@ -66,3 +66,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.keymap.set('n', '<leader>y', '"+y')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>f', '<cmd>FZF<CR>')
+
+-- Autocommand to copy vim-be-better to the plugin directory
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "/home/benny/Desktop/vim-be-better/**",
+    callback = function()
+        -- Schedule the command to run asynchronously
+        vim.schedule(function()
+            vim.fn.system("sudo cp -r $HOME/Desktop/vim-be-better $HOME/.local/share/nvim/site/pack/plugins/start")
+        end)
+    end
+})

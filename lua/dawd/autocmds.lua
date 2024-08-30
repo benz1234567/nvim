@@ -20,4 +20,16 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     end
 })
 
+-- Autocommand to copy vim-be-better to the plugin directory
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function()
+      local targetdir = "/home/benny/Zettelkasten"
+      if vim.fn.getcwd():sub(1, #targetdir) == targetdir then
+        require("dawd.obsidian")
+      else
+        package.loaded["dawd.obsidian"] = nil
+      end
+    end
+})
+
 return autocmds

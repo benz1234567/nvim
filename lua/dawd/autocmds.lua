@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     end
 })
 
--- Autocommand to copy vim-be-better to the plugin directory
+-- Obsidian
 vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
       local targetdir = "/home/benny/Zettelkasten"

@@ -143,4 +143,12 @@ vim.keymap.set('n', '<C-t>', function()
   print(is_inside_obsidian_link())
 end)
 
+-- Crosslink file on save
+vim.api.nvim_create_autocmd("BufWritePost", {
+  callback = function()
+    os.execute("crosslink " .. vim.api.nvim_buf_get_name(0) .. " 2>/dev/null")
+  end
+})
+
+
 return obsidian

@@ -66,7 +66,6 @@ local function is_inside_obsidian_link()
   -- Get the current line and cursor position
   local line = vim.fn.getline('.')
   local col = vim.fn.col('.')
-  print(#line)
 
   -- Ensure the cursor is within the valid range
   if col <= 2 or col > #line + 1 then
@@ -150,5 +149,57 @@ vim.api.nvim_create_autocmd("BufWritePost", {
   end
 })
 
+vim.keymap.set('n', '<leader>r', function()
+  local line = vim.fn.getline('.')
+  local col = vim.fn.col('.')
+
+  -- Ensure the cursor is within the valid range
+  if col <= 2 or col > #line + 1 then
+    return false
+  end
+
+  -- Extract relevant portion of the line
+  local text_before_cursor = line:sub(1, col - 1)
+
+  local idx = 1
+  local bracketcount = 0
+  local linkstart = 0
+  local linkend = 0
+
+  for idx = #text_before_cursor, 1, -1 do
+    local letter = text_before_cursor:sub(idx, idx)
+    if letter == "[" then
+      bracketcount = bracketcount + 1
+      if bracketcount < 2 then
+      else
+        linkstart = idx
+        break
+      end
+    elseif letter == " " or not letter or letter == "]" or bracketcount == 1 then
+      return false
+    end
+  end
+
+  if not ( bracketcount >= 2 ) then
+    return false
+  end
+
+  bracketcount = 0
+  local text_after_cursor = line:sub(col, #line)
+  for idx = 1, #text_after_cursor do
+    local letter = text_after_cursor:sub(idx, idx)
+    if letter == "]" then
+      bracketcount = bracketcount + 1
+      if bracketcount >= 2 then
+        linkend = idx + col
+        break
+      end
+    elseif not letter or letter == " " or letter == "[" or bracketcount == 1 then
+      return false
+    end
+  end
+  os.execute("crosslink " .. vim.api.nvim_buf_get_name(0) .. " 2>/dev/null")
+  os.execute("notify-send $(echo '" .. line:sub(linkstart, linkend) .. "' | filefromlink)")
+end)
 
 return obsidian

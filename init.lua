@@ -12,6 +12,7 @@ require("dawd.treesitter")
 
 -- Allow you to access any file in any subdirectory with :find
 vim.o.path = '.,**,'
+vim.o.mouse = ""
 
 -- Removes the status bar:
 vim.opt.laststatus = 0

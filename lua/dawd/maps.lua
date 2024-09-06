@@ -10,6 +10,7 @@ vim.keymap.set('v', '<leader>p', '"+p')
 
 vim.keymap.set('n', '<leader>f', '<cmd>FZF<CR>')
 vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<CR><c-w><c-h>')
+vim.keymap.set('n', '-', '<cmd>Oil<CR>')
 
 -- Escape removes search higlighting
 --vim.opt.hlsearch = true

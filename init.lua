@@ -17,6 +17,7 @@ local plugins = {
 'https://github.com/nvim-treesitter/nvim-treesitter-context',
 'https://github.com/junegunn/fzf',
 'https://github.com/mbbill/undotree',
+'https://github.com/stevearc/oil.nvim',
 }
 
 vim.g.plugins = plugins
@@ -28,11 +29,10 @@ vim.g.maplocalleader = ' '
 require("dawd.maps")
 require("dawd.autocmds")
 require("dawd.treesitter")
+require("oil").setup()
 --require("dawd.zero")
 --require("dawd.lsp")
 
--- Allow you to access any file in any subdirectory with :find
-vim.o.path = '.,**,'
 vim.o.mouse = ""
 
 -- Removes the status bar:

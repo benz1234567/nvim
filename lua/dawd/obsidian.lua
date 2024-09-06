@@ -199,7 +199,16 @@ vim.keymap.set('n', '<leader>r', function()
     end
   end
   os.execute("crosslink " .. vim.api.nvim_buf_get_name(0) .. " 2>/dev/null")
-  os.execute("notify-send $(echo '" .. line:sub(linkstart, linkend) .. "' | filefromlink)")
+  local newname = nil
+  vim.ui.input({ prompt = "New Name: " }, function(input)
+    if input then
+      newname = input
+    end
+  end)
+  --vim.cmd("normal! ci]" .. newname)
+
+  --os.execute('file=$(echo "' .. line:sub(linkstart, linkend) .. '" | filefromlink); mv "$file" "$(dirname $file)/' .. newname .. '.md"')
+  -- broken: os.execute([[bash -c 'shopt -s globstar; esc=$(echo "]] .. line:sub(linkstart, linkend) .. [[" | sed \'s/\[/\\[/g; s/\]/\\]/g;\'); sed -i "s/$esc/\[\[]] .. newname .. [[\]\]/g" /home/benny/Zettelkasten/**/*.md']])
 end)
 
 return obsidian

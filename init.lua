@@ -16,6 +16,7 @@ local plugins = {
 'https://github.com/nvim-treesitter/nvim-treesitter',
 'https://github.com/nvim-treesitter/nvim-treesitter-context',
 'https://github.com/junegunn/fzf',
+'https://github.com/mbbill/undotree',
 }
 
 vim.g.plugins = plugins

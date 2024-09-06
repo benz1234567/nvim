@@ -161,7 +161,6 @@ vim.keymap.set('n', '<leader>r', function()
   -- Extract relevant portion of the line
   local text_before_cursor = line:sub(1, col - 1)
 
-  local idx = 1
   local bracketcount = 0
   local linkstart = 0
   local linkend = 0

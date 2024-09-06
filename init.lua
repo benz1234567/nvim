@@ -30,8 +30,6 @@ require("dawd.maps")
 require("dawd.autocmds")
 require("dawd.treesitter")
 require("oil").setup()
---require("dawd.zero")
---require("dawd.lsp")
 
 vim.o.mouse = ""
 

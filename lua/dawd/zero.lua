@@ -29,6 +29,15 @@ require('mason-lspconfig').setup({
     function(server_name)
       require('lspconfig')[server_name].setup({})
     end,
+    
+    -- Example of how to set the root dir to be the current directory
+    -- clangd = function()
+    --   require('lspconfig').clangd.setup({
+    --     root_dir = function(file)
+    --       return vim.loop.cwd()
+    --     end
+    --   })
+    -- end
   },
 })
 
@@ -38,7 +47,4 @@ require'cmp'.setup {
   }
 }
 
-require('lspconfig').clangd.setup {
-  capabilities = capabilities,
-  ...  -- other lspconfig configs
-}
+

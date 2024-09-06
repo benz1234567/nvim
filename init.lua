@@ -1,6 +1,26 @@
 --Plugins from pm plugin manager
-vim.cmd.source("/home/benny/.config/nvim/pm.vim")
+local plugins = {
+-- My plugins:
+'https://github.com/benz1234567/vim-be-better',
+'https://github.com/benz1234567/nvtt',
 
+-- LSP:
+'https://github.com/VonHeikemen/lsp-zero.nvim',
+'https://github.com/neovim/nvim-lspconfig',
+'https://github.com/williamboman/mason.nvim',
+'https://github.com/williamboman/mason-lspconfig.nvim',
+'https://github.com/hrsh7th/cmp-nvim-lsp',
+'https://github.com/hrsh7th/nvim-cmp',
+
+-- Other:
+'https://github.com/nvim-treesitter/nvim-treesitter',
+'https://github.com/nvim-treesitter/nvim-treesitter-context',
+'https://github.com/junegunn/fzf',
+}
+
+vim.g.plugins = plugins
+
+vim.g.undofile = ""
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

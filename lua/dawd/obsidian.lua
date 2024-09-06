@@ -205,10 +205,10 @@ vim.keymap.set('n', '<leader>r', function()
       newname = input
     end
   end)
-  --vim.cmd("normal! ci]" .. newname)
+  vim.cmd("normal! ci]" .. newname)
 
-  --os.execute('file=$(echo "' .. line:sub(linkstart, linkend) .. '" | filefromlink); mv "$file" "$(dirname $file)/' .. newname .. '.md"')
-  -- broken: os.execute([[bash -c 'shopt -s globstar; esc=$(echo "]] .. line:sub(linkstart, linkend) .. [[" | sed \'s/\[/\\[/g; s/\]/\\]/g;\'); sed -i "s/$esc/\[\[]] .. newname .. [[\]\]/g" /home/benny/Zettelkasten/**/*.md']])
+  os.execute('file=$(echo "' .. line:sub(linkstart, linkend) .. '" | filefromlink); mv "$file" "$(dirname $file)/' .. newname .. '.md"')
+  os.execute("obsed '" .. line:sub(linkstart, linkend) .. "' '" .. newname .. "'")
 end)
 
 return obsidian

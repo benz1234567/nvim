@@ -36,7 +36,7 @@ vim.o.mouse = ""
 -- Removes the status bar:
 vim.opt.laststatus = 0
 
---vim.cmd('colorscheme wildcharm')
+vim.cmd('colorscheme wildcharm')
 
 vim.g.have_nerd_font = true
 vim.opt.number = true

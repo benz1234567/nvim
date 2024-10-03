@@ -32,4 +32,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
 })
 
+-- Autocommand to copy vim-be-better to the plugin directory
+vim.api.nvim_create_autocmd("BufWritePost", {
+    pattern = "*.ms",
+    callback = function()
+        -- Schedule the command to run asynchronously
+        vim.schedule(function()
+            os.execute('file=' .. vim.fn.expand('%:p') .. '; groff -ms -Tpdf $file > "${file%.ms}.pdf"')
+        end)
+    end
+})
+
 return autocmds

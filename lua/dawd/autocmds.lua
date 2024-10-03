@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
 })
 
--- Autocommand to copy vim-be-better to the plugin directory
+-- Autocompile groff ms
 vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = "*.ms",
     callback = function()

@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     callback = function()
         -- Schedule the command to run asynchronously
         vim.schedule(function()
-            os.execute('file=' .. vim.fn.expand('%:p') .. '; groff -ms -Tpdf $file > "${file%.ms}.pdf"')
+            os.execute('file=' .. vim.fn.expand('%:p') .. '; groff -ms -Tpdf $file > "${file%.ms}.pdf" 2>/dev/null')
         end)
     end
 })
